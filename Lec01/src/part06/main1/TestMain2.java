@@ -1,0 +1,28 @@
+package part06.main1;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+public class TestMain2 {
+
+	public static void main(String[] args) throws Exception {
+		Class forName = Class.forName("part06.main1.TypeA");
+		Object a1 = forName.getDeclaredConstructor().newInstance();
+	    Method method1 = forName.getDeclaredMethod("getName");
+	    Object name1 = method1.invoke(a1 );
+	    System.out.println("a1 name = " + name1);
+	    
+	    Method method2 = forName.getDeclaredMethod("setName", String.class);
+	    method2.invoke(a1, "name2");
+	    
+	    Constructor constructor =  forName.getDeclaredConstructor(String.class);
+	    Object a2 = constructor.newInstance("name3");
+	    Object name3 = method1.invoke(a2);
+	    System.out.println("a2 name3 = "+ name3);
+	    
+	    Method method3 = forName.getDeclaredMethod("method1");
+	    method3.invoke(null);
+	}
+
+}
