@@ -1,0 +1,74 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Customer</title>
+</head>
+
+<script src="/js/jQuery-2.1.4.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+
+		var formObj = $("#customer");
+
+		$("#btnModify").on("click", function() {
+			formObj.attr("action", "/cus/modify");
+			formObj.attr("method", "post");
+			formObj.submit();
+		});
+
+		$("#btnList").on("click", function() {
+			self.location = "/cus/list";
+		});
+
+	});
+</script>
+
+<body>
+	<h2>MODIFY</h2>
+	
+	<form id="customer" action="success.html" th:action="@{modify}" th:object="${customer}" method="POST">
+		<input type="hidden" name="jumin" th:field="*{jumin}" />
+		
+		<table>
+			<tr>
+				<td>name</td>
+				<td><input type="text" name="name" th:field="*{name}" /></td>
+				<td><font color="red"><span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">error message for name</span></font></td>
+			</tr>
+			<tr>
+				<td>addresss</td>
+				<td><textarea name="addr" th:field="*{addr}"></textarea></td>
+				<td><font color="red"><span th:if="${#fields.hasErrors('addr')}" th:errors="*{addr}">error message for addr</span></font></td>
+			</tr>
+			<tr>
+				<td>birth</td>
+				<td><input type="text" name="birth" th:field="*{birth}" /></td>
+				<td><font color="red"><span th:if="${#fields.hasErrors('birth')}" th:errors="*{birth}">error message for birth</span></font></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td><input type="text" name="email" th:field="*{email}" /></td>
+				<td><font color="red"><span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">error message for email</span></font></td>
+			</tr>
+			<tr>
+				<td>Job</td>
+				<td><input type="text" name="job" th:field="*{job}" /></td>
+				<td><font color="red"><span th:if="${#fields.hasErrors('job')}" th:errors="*{job}">error message for job</span></font></td>
+			</tr>
+			<tr>
+				<td>phnum</td>
+				<td><input type="text" name="phnum" th:field="*{phnum}" /></td>
+				<td><font color="red"><span th:if="${#fields.hasErrors('phnum')}" th:errors="*{phnum}">error message for phnum</span></font></td>
+			</tr>
+			
+		</table>
+
+	</form>	
+	
+	<div>
+		<button type="submit" id="btnModify">Modify</button>
+		<button type="submit" id="btnList">List</button>
+	</div>
+</body>
+</html>

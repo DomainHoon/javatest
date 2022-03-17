@@ -1,0 +1,79 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Car</title>
+</head>
+
+<script src="/js/jQuery-2.1.4.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+
+		let formObj = $("#customer");
+
+		console.log(formObj);
+
+		$("#btnModify").on("click", function() {
+			let jumin = $("#jumin");
+			let juminVal = jumin.val();
+			
+			self.location = "/cus/modify?jumin=" + juminVal;
+		});
+
+		$("#btnDelete").on("click", function() {
+			formObj.attr("action", "/cus/delete");
+			formObj.submit();
+		});
+
+		$("#btnList").on("click", function() {
+			self.location = "/cus/list";
+		});
+
+	});
+</script>
+
+<body>
+	<h2>READ</h2>
+	
+	<form id="customer" th:object="${customer}" method="POST">
+		<input type="hidden" name="name" th:field="*{name}" />
+	
+		<table>
+		<tr>
+				<td>jumin</td>
+				<td><input type="text" name="jumin" th:field="*{jumin}"  /></td>
+			</tr>
+			<tr>
+				<td>Name</td>
+				<td><input type="text" name="name" th:field="*{name}"  /></td>
+			</tr>
+			<tr>
+				<td>Address</td>
+				<td><textarea name="addr" th:field="*{addr}" ></textarea></td>
+			</tr>
+			<tr>
+				<td>Birth</td>
+				<td><input type="date" name="birth" th:field="*{birth}" /></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td><input type="text" name="email" th:field="*{email}"  /></td>
+			</tr>
+			<tr>
+				<td>Job</td>
+				<td><input type="text" name="job" th:field="*{job}" /></td>
+			</tr>
+				<tr>
+				<td>phnum</td>
+				<td><input type="text" name="phnum" th:field="*{phnum}" /></td>
+			</tr>
+		</table>	
+	</form>	
+	
+	<div>
+		<button type="submit" id="btnModify">Modify</button>
+		<button type="submit" id="btnDelete">Delete</button>
+		<button type="submit" id="btnList">List</button>
+	</div>
+</body>
+</html>

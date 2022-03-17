@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Customers</title>
+</head>
+<body>
+	<h2>List</h2>
+	<a href="register.html" th:href="@{register}">New</a>
+	<table border="1">
+		<tr>
+			<th text-align="center" width="80">JUMIN</th>
+			<th text-align="center" width="150">NAME</th>
+			<th text-align="center" width="200">ADDR</th>
+			<th text-align="center" width="100">BIRTH</th>
+			<th text-align="center" width="100">EMAIL</th>
+			<th text-align="center" width="100">PHNUM</th>
+			<th text-align="center" width="100">JOB</th>
+		</tr>
+		
+		<tr th:if="${#lists.isEmpty(list)}">
+			<td colspan="6">
+				List is empty.
+			</td>
+		</tr>
+		
+		<tr th:each="customer : ${list}">
+			<td text-align="center" th:text="${customer.jumin}">${customer.jumin}</a></td>
+			<td text-align="left"><a href="read.html" th:href="@{|read?jumin=${customer.jumin}|}" th:text="${customer.name}">${customer.name}</a></td>
+			<td text-align="center" th:text="${customer.birth}">${customer.birth}</td>
+			<td text-align="center" th:text="${customer.addr}">${customer.addr}</td>
+			<td text-align="center" th:text="${customer.email}">${customer.email}</td>
+			<td text-align="center" th:text="${customer.phnum}">${customer.phnum}</td>
+			<td text-align="center" th:text="${customer.job}">${customer.job}</td>
+
+		</tr>
+	</table>
+</body>
+</html>
